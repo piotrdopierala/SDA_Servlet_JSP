@@ -1,0 +1,32 @@
+.pageTitle {
+    text-align: center;
+}
+
+.rectangle{
+    display: inline-block;
+    background: red;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    border: 3px solid;
+    border-color: black;
+}
+
+.text-in-rectangle{
+    font-weight: bold;
+    color: yellow;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid;
+    border-color: white;
+}
+
+.form-label{
+    display: block;
+    margin-top: 10px;
+}
+
+.footer{
+    text-align: center;
+    font-weight: bold;
+}

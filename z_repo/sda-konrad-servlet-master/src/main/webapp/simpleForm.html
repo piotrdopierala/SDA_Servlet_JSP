@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple form</title>
+</head>
+<body>
+<style>
+    input {
+        margin-bottom: 1em;
+    }
+</style>
+
+<form action="actionServlet" method="get">
+    <div>
+        <label>Imię</label><br/>
+        <input name="name" type="text">
+    </div>
+    <div>
+        <label>Nazwisko</label><br>
+        <input name="last-name" type="text">
+    </div>
+    <div>
+        <label>Tekst</label><br>
+        Mężczyzna:<input name="gender" value="male" type="radio"><br>
+        Kobieta:<input name="gender" value="female" type="radio"><br>
+        Brak:<input name="gender" value="unknown" type="radio"><br>
+    </div>
+    <div>
+        <label>Zainteresowania</label><br>
+        Filmy:<input name="movie" value="movie_value" type="checkbox">
+        Sport:<input name="sport" value="sport_value" type="checkbox">
+        Motocykl:<input checked name="moto" value="moto_value" type="checkbox">
+    </div>
+    <div>
+        <label>Data urodzenia</label><br/>
+        <input name="birthdate" type="date">
+    </div>
+
+    <div>
+        <input type="submit" value="Confirm">
+    </div>
+</form>
+</body>
+</html>

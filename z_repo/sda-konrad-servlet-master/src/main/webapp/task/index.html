@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1 class="pageTitle">ZADANIE 1</h1>
+<br>
+<article>
+    <b>To jest tekst pogrubiony</b>
+    <i>To jest tekst pochylony</i>
+</article>
+<br>
+<form action="doTask" method="post">
+    <fieldset>
+        <legend>Formularz</legend>
+        <label class="form-label">Imię: <input type="text" name="firstName" required></label>
+        <label class="form-label">Nazwisko: <input type="text" name="lastName" required></label>
+        <label class="form-label">Wiek: <input type="number" name="age" min="1"></label><br>
+        <button type="submit">Zapisz</button>
+    </fieldset>
+</form>
+<br>
+    <a href="/servletWar/task/doList">Lista użytkowników</a>
+<br>
+<div>
+    <div class="rectangle"><p class="text-in-rectangle">Tekst w pierwszym kwardacie</p></div>
+    <div class="rectangle"><p class="text-in-rectangle">Tekst w drugim kwardacie</p></div>
+</div>
+<footer class="footer">
+    SDA 2019
+</footer>
+</body>
+</html>
