@@ -3,12 +3,14 @@ package sda.javapoz12.domain;
 public class User {
     private String name;
     private String lastName;
+    private String email;
     private int age;
     private int id;
 
-    public User(String name, String lastName, int age) {
+    public User(String name, String lastName, String email,int age) {
         this.name = name;
         this.lastName = lastName;
+        this.email=email;
         this.age = age;
     }
 
@@ -44,6 +46,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

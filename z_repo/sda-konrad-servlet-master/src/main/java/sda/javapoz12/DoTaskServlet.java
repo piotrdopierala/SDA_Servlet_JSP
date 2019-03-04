@@ -12,12 +12,25 @@ import java.io.PrintWriter;
 
 import static sda.javapoz12.dal.UsersDB.USERS;
 
+
+/*
+TODO:
+W ramach rozbudowy umiejętności polecam:
+- sformatować listę użytkowników aby każdy z użytkowników był linkiem kierującym do  informacji użytkowniku `doTask?surname=xxx` (zamiast xxx każdy użytkownik ma swoje nazwisko w linku)
+- dodać link kierujący z listy do zakładania nowego użytkownika `index.html`
+- rozbudować klasę użytkownik o pole email, które może być lepszym kluczem w mapie
+- można dodać style i inne upiększenia
+- dodać usuwanie użytkownika (link z listy) poprzez osobny servlet i metodę `GET`
+doDelete?surname=xxx
+ */
+
 @WebServlet("/task/doTask")
 public class DoTaskServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         User user = new User(request.getParameter("firstName"),
                 request.getParameter("lastName"),
+                request.getParameter("email"),
                 Integer.parseInt(request.getParameter("age")));
 
         System.out.println("DoTaskServlet post from " + request.getRemoteAddr());
