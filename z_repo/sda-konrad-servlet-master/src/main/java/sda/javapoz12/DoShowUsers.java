@@ -1,6 +1,8 @@
 package sda.javapoz12;
 
-import sda.javapoz12.dal.UsersDB;
+import sda.javapoz12.dal.UsersRepo;
+import sda.javapoz12.dal.UsersRepoInMemory;
+import sda.javapoz12.dal.UsersRepoInitializer;
 import sda.javapoz12.domain.User;
 
 import javax.servlet.ServletException;
@@ -10,13 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Collection;
 
-import static sda.javapoz12.dal.UsersDB.USERS;
+import static sda.javapoz12.dal.UsersRepoInMemory.USERS;
 
 @WebServlet("/task/doList")
 public class DoShowUsers extends HttpServlet {
+
+    private UsersRepo repo;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        System.out.println("--- doList init ---");
+        repo = UsersRepoInitializer.getInstnace();
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
@@ -33,7 +44,7 @@ public class DoShowUsers extends HttpServlet {
                 "<h1 align = \"center\">" + title + "</h1>\n" +
                 "<ul>\n");
 
-        Collection<User> users = USERS.getUsers();
+        Collection<User> users = repo.getUsers();
 
         users.forEach(u -> out.println("<li><a href=\"/servletWar/task/doShowUser?id="+u.getId()+"\"> ID:"+u.getId()+" imie i nazwisko:"+ u.getName() + " " + u.getLastName()+"</a></li>"));
         out.println("<br><a href=\"/servletWar/task\">Dodaj nowego użytkownika</a>");

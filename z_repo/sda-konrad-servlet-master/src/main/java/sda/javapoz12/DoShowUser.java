@@ -1,6 +1,5 @@
 package sda.javapoz12;
 
-import sda.javapoz12.dal.UsersDB;
 import sda.javapoz12.domain.User;
 
 import javax.servlet.ServletException;
@@ -10,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
 
-import static sda.javapoz12.dal.UsersDB.USERS;
+import static sda.javapoz12.dal.UsersRepoInMemory.USERS;
 
 @WebServlet("/task/doShowUser")
 public class DoShowUser extends HttpServlet {
@@ -20,6 +18,7 @@ public class DoShowUser extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         User user = USERS.getUserByNo(id);
+
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

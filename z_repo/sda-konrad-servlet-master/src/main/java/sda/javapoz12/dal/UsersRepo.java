@@ -4,7 +4,7 @@ import sda.javapoz12.domain.User;
 
 import java.util.Collection;
 
-public interface Repo {
+public interface UsersRepo {
     void saveUser(User newUser);
 
     User getUserByLastName(String lastName);
@@ -12,4 +12,5 @@ public interface Repo {
     User getUserByNo(int no);
 
     Collection<User> getUsers();
+
 }

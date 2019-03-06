@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static sda.javapoz12.dal.UsersDB.USERS;
+import static sda.javapoz12.dal.UsersRepoInMemory.USERS;
 
 
 /*

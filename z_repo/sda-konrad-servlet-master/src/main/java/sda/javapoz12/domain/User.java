@@ -1,11 +1,16 @@
 package sda.javapoz12.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
+    @Id
+    private int id;
     private String name;
     private String lastName;
     private String email;
     private int age;
-    private int id;
 
     public User(String name, String lastName, String email,int age) {
         this.name = name;
@@ -14,7 +19,8 @@ public class User {
         this.age = age;
     }
 
-
+    public User() {
+    }
 
     public String getName() {
         return name;
