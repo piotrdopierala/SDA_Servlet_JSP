@@ -13,4 +13,5 @@ public interface UsersRepo {
 
     Collection<User> getUsers();
 
+    User deleteUserByNo(int no);
 }

@@ -31,6 +31,7 @@ public class DoShowUsers extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String title = "List of Users:";
         String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
@@ -44,7 +45,7 @@ public class DoShowUsers extends HttpServlet {
 
         Collection<User> users = repo.getUsers();
 
-        users.forEach(u -> out.println("<li><a href=\"/servletWar/task/doShowUser?id="+u.getId()+"\"> ID:"+u.getId()+" imie i nazwisko:"+ u.getName() + " " + u.getLastName()+"</a></li>"));
+        users.forEach(u -> out.println("<li><a href=\"/servletWar/task/doShowUser?id="+u.getId()+"\"> ID:"+u.getId()+" imie i nazwisko:"+ u.getName() + " " + u.getLastName()+"</a> <a style=\"color:red\" href=\"/servletWar/task/doDelete?id="+u.getId()+"\">Usuń</a></li>"));
         out.println("<br><a href=\"/servletWar/task\">Dodaj nowego użytkownika</a>");
         out.println("</ul>\n" +
                 "</body>" +

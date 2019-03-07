@@ -49,4 +49,15 @@ enum UsersRepoInDB implements UsersRepo {
         List resultList = selectAllQuery.getResultList();
         return resultList;
     }
+
+    @Override
+    public User deleteUserByNo(int no) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        EntityTransaction tran = em.getTransaction();
+        tran.begin();
+        User userToDelete = em.find(User.class, no);
+        em.remove(userToDelete);
+        tran.commit();
+        return null;
+    }
 }

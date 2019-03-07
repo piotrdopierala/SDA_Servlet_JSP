@@ -29,6 +29,7 @@ public class DoShowUser extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         User user = repo.getUserByNo(id);
 
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         String title = "Informacja szczegółowa na temat użytkownika:";
@@ -45,7 +46,7 @@ public class DoShowUser extends HttpServlet {
         out.println("Nazwisko:"+user.getLastName()+"<br>");
         out.println("Wiek:"+user.getAge()+"<br>");
         out.println("email:"+user.getEmail()+"<br>");
-
+        out.println("<br><a href=\"/servletWar/task/doDelete?id="+user.getId()+"\">Usuń tego użytkownika</a>");
 
         out.println("<br><a href=\"/servletWar/task/doList\">Powrót do listy</a>");
         out.println("<br><a href=\"/servletWar/task\">Dodaj nowego użytkownika</a>");

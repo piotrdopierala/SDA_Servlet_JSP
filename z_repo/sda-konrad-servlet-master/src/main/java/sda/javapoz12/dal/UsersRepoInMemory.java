@@ -37,4 +37,10 @@ enum UsersRepoInMemory implements UsersRepo {
     public Collection<User> getUsers(){
         return storage.values();
     }
+
+    @Override
+    public User deleteUserByNo(int no) {
+        User usrToDelete= getUserByNo(no);
+        return storage.remove(no);
+    }
 }

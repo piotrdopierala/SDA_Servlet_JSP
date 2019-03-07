@@ -49,11 +49,14 @@ public class DoTaskServlet extends HttpServlet {
 
         repo.saveUser(user);
 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.sendRedirect("/servletWar/task/index.html");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
         PrintWriter writer = response.getWriter();
         String lastName = request.getParameter("lastName");
         if (lastName != null) {
