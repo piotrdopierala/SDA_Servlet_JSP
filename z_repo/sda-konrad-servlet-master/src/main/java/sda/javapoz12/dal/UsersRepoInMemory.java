@@ -4,7 +4,7 @@ import sda.javapoz12.domain.User;
 
 import java.util.*;
 
-public enum UsersRepoInMemory implements UsersRepo {
+enum UsersRepoInMemory implements UsersRepo {
     USERS;
 
     private Map<Integer, User> storage = new HashMap<>();

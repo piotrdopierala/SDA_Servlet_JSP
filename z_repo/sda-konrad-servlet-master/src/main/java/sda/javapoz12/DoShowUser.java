@@ -1,5 +1,7 @@
 package sda.javapoz12;
 
+import sda.javapoz12.dal.UsersRepo;
+import sda.javapoz12.dal.UsersRepoInitializer;
 import sda.javapoz12.domain.User;
 
 import javax.servlet.ServletException;
@@ -10,15 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static sda.javapoz12.dal.UsersRepoInMemory.USERS;
 
 @WebServlet("/task/doShowUser")
 public class DoShowUser extends HttpServlet {
+
+    private UsersRepo repo;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        repo = UsersRepoInitializer.getInstnace();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        User user = USERS.getUserByNo(id);
-
+        User user = repo.getUserByNo(id);
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

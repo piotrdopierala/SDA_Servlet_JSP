@@ -1,7 +1,6 @@
 package sda.javapoz12;
 
 import sda.javapoz12.dal.UsersRepo;
-import sda.javapoz12.dal.UsersRepoInMemory;
 import sda.javapoz12.dal.UsersRepoInitializer;
 import sda.javapoz12.domain.User;
 
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 
-import static sda.javapoz12.dal.UsersRepoInMemory.USERS;
 
 @WebServlet("/task/doList")
 public class DoShowUsers extends HttpServlet {

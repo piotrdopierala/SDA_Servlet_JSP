@@ -1,5 +1,7 @@
 package sda.javapoz12;
 
+import sda.javapoz12.dal.UsersRepo;
+import sda.javapoz12.dal.UsersRepoInitializer;
 import sda.javapoz12.domain.User;
 
 import javax.servlet.ServletException;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static sda.javapoz12.dal.UsersRepoInMemory.USERS;
 
 
 /*
@@ -26,6 +27,16 @@ doDelete?surname=xxx
 
 @WebServlet("/task/doTask")
 public class DoTaskServlet extends HttpServlet {
+
+    private UsersRepo repo;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        repo = UsersRepoInitializer.getInstnace();
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         User user = new User(request.getParameter("firstName"),
@@ -36,16 +47,17 @@ public class DoTaskServlet extends HttpServlet {
         System.out.println("DoTaskServlet post from " + request.getRemoteAddr());
         System.out.println("User created: "+ user);
 
-        USERS.saveUser(user);
+        repo.saveUser(user);
 
         response.sendRedirect("/servletWar/task/index.html");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter writer = response.getWriter();
         String lastName = request.getParameter("lastName");
         if (lastName != null) {
-            User user = USERS.getUserByLastName(lastName);
+            User user = repo.getUserByLastName(lastName);
 
             if (user != null) {
                 writer.println("DoTaskServlet GET from " + request.getRemoteAddr());
@@ -58,7 +70,7 @@ public class DoTaskServlet extends HttpServlet {
 
         String userNo = request.getParameter("userNo");
         if (userNo != null) {
-            User user = USERS.getUserByNo(Integer.valueOf(userNo));
+            User user = repo.getUserByNo(Integer.valueOf(userNo));
 
             if (user != null) {
                 writer.println("DoTaskServlet GET from " + request.getRemoteAddr());
