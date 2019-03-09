@@ -1,4 +1,4 @@
-package sda.javapoz12;
+package sda.javapoz12.sandbox;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;

@@ -1,4 +1,4 @@
-package sda.javapoz12;
+package sda.javapoz12.user;
 
 import sda.javapoz12.dal.UsersRepo;
 import sda.javapoz12.dal.UsersRepoInitializer;
@@ -11,28 +11,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 
 
-@WebServlet("/task/doShowUser")
-public class DoShowUser extends HttpServlet {
+@WebServlet("/task/doList")
+public class DoShowUsers extends HttpServlet {
 
     private UsersRepo repo;
 
     @Override
     public void init() throws ServletException {
         super.init();
+        System.out.println("--- doList init ---");
         repo = UsersRepoInitializer.getInstnace();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        User user = repo.getUserByNo(id);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
 
-        response.setCharacterEncoding("UTF-8");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String title = "Informacja szczegółowa na temat użytkownika:";
+        String title = "List of Users:";
         String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
 
         out.println(docType +
@@ -42,16 +43,13 @@ public class DoShowUser extends HttpServlet {
                 "<h1 align = \"center\">" + title + "</h1>\n" +
                 "<ul>\n");
 
-        out.println("Imię:"+user.getName()+"<br>");
-        out.println("Nazwisko:"+user.getLastName()+"<br>");
-        out.println("Wiek:"+user.getAge()+"<br>");
-        out.println("email:"+user.getEmail()+"<br>");
-        out.println("<br><a href=\"/servletWar/task/doDelete?id="+user.getId()+"\">Usuń tego użytkownika</a>");
+        Collection<User> users = repo.getUsers();
 
-        out.println("<br><a href=\"/servletWar/task/doList\">Powrót do listy</a>");
+        //users.forEach(u -> out.println("<li><a href=\"/servletWar/task/doShowUser?id="+u.getId()+"\"> ID:"+u.getId()+" imie i nazwisko:"+ u.getName() + " " + u.getLastName()+"</a> <a style=\"color:red\" href=\"/servletWar/task/doDelete?id="+u.getId()+"\">Usuń</a></li>"));
+        users.forEach(u -> out.println("<li><a href=\"/servletWar/task/doShowUser?id="+u.getId()+"\"> ID:"+u.getId()+" imie i nazwisko:"+ u.getName() + " " + u.getLastName()+"</a> <form action=\"/servletWar/task/doDelete\" method=\"post\"><input type=\"hidden\" id=\"id\" name=\"id\" value=\""+u.getId()+"\"><input type=\"submit\" value=\"Usuń\"></form></li>"));
         out.println("<br><a href=\"/servletWar/task\">Dodaj nowego użytkownika</a>");
         out.println("</ul>\n" +
                 "</body>" +
                 "</html>");
-    }
+}
 }

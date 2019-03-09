@@ -1,4 +1,4 @@
-package sda.javapoz12;
+package sda.javapoz12.user;
 
 import sda.javapoz12.dal.UsersRepo;
 import sda.javapoz12.dal.UsersRepoInitializer;
@@ -23,6 +23,13 @@ public class DoDeleteUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUserToDelete = Integer.parseInt(req.getParameter("id"));
+        repo.deleteUserByNo(idUserToDelete);
+        resp.sendRedirect("/servletWar/task/doList");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUserToDelete = Integer.parseInt(req.getParameter("id"));
         repo.deleteUserByNo(idUserToDelete);
         resp.sendRedirect("/servletWar/task/doList");

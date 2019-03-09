@@ -6,15 +6,15 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>SimpleSDA</servlet-name>
-    <servlet-class>sda.javapoz12.SimpleServlet</servlet-class>
+    <servlet-class>sda.javapoz12.sandbox.SimpleServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AdvancedSDA</servlet-name>
-    <servlet-class>sda.javapoz12.AdvancedServlet</servlet-class>
+    <servlet-class>sda.javapoz12.sandbox.AdvancedServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>WebCache</servlet-name>
-    <servlet-class>sda.javapoz12.WebCacheServlet</servlet-class>
+    <servlet-class>sda.javapoz12.sandbox.WebCacheServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

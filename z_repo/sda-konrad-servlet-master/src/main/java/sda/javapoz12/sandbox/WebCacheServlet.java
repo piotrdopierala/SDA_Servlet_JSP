@@ -1,4 +1,4 @@
-package sda.javapoz12;
+package sda.javapoz12.sandbox;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
