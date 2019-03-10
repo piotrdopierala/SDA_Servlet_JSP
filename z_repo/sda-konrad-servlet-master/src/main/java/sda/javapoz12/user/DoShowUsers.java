@@ -1,6 +1,7 @@
 package sda.javapoz12.user;
 
 import sda.javapoz12.dal.UsersRepo;
+import sda.javapoz12.dal.UsersRepo;
 import sda.javapoz12.dal.UsersRepoInitializer;
 import sda.javapoz12.domain.User;
 
@@ -31,7 +32,6 @@ public class DoShowUsers extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String title = "List of Users:";
         String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";

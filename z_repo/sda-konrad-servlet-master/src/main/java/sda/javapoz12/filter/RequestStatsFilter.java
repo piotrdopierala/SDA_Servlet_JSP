@@ -12,29 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-@WebFilter(filterName = "CharsetFilter", urlPatterns = "/task/*")
-public class CharsetFilter implements Filter {
+@WebFilter(filterName = "RequestStatsFilter", urlPatterns = "/task/*")
+public class RequestStatsFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        // przed wywolaniem
+
         if (req instanceof HttpServletRequest) {
             HttpServletRequest request;
             request = (HttpServletRequest) req;
-            request.setCharacterEncoding("UTF-8");
+            System.out.println("Request from address IP:"+request.getRemoteAddr());
+            System.out.println("Filter request at time:"+ LocalDateTime.now());
+            System.out.println("Filter requested URL:"+request.getMethod()+" - "+request.getRequestURL());
+
         }
 
         if (resp instanceof HttpServletResponse) {
             HttpServletResponse response;
             response = (HttpServletResponse) resp;
-            response.setCharacterEncoding("UTF-8");
         }
+
         chain.doFilter(req, resp);
-
-
-
-
+        System.out.println("END OF REQUEST STATS FILER");
     }
 
     public void init(FilterConfig config) throws ServletException {
